@@ -1,0 +1,2 @@
+(* if-version : newton ... = if n = 0. then x else u-.((f u)/.(deriv f e u));; *)
+(* afficher un booleen : print_string (if x then "true" else "false");; *)
