@@ -1,0 +1,1 @@
+mcs file.cs & mono file.exe

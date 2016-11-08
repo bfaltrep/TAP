@@ -42,7 +42,7 @@ let rec iterate f n x =
   [ (1,"true")  ; (2,"false") ] => liste de tuples (tuples du MEME format)
 *)
 
-et list_int = 4::5::7::[];;
+let list_int = 4::5::7::[];;
 let rec voir l =
   match l with
     | [] -> print_string " "
