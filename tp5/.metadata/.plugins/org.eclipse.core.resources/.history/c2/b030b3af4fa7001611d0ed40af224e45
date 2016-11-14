@@ -1,0 +1,21 @@
+package tp5;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Ex2Flat {
+
+	
+	
+	public static void main(String[] args) {
+		List<List<Integer>> big = new ArrayList<List<Integer>>();
+		for (int i = 0; i < 5; i++) {
+			big.add(new ArrayList<Integer>());
+			for (int j = 0; j < 5; j++) {
+				big.get(i).add(new Integer((int)Math.random()*10));
+			}
+		}
+		
+	}
+
+}

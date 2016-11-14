@@ -1,0 +1,12 @@
+package tp5;
+
+public class Ex2Flat {
+
+	
+	
+	public static void main(String[] args) {
+		List<List<int>> big = new ArrayList<List<int>>();
+
+	}
+
+}

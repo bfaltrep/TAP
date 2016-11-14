@@ -1,0 +1,55 @@
+package tp5;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Ex2 {
+	public class Q3{
+		public int data = 6;
+	}
+	
+	public class Q2 extends Q3{
+		public int data = 5;
+		
+	}
+	
+	public class Q2Son extends Q2{
+		public Q2Son(){super.data = 4;}
+		
+		public void decrement(){
+			super.data --;
+		}
+	}
+	
+	public static int getData(List<? extends Q2> q){
+		return q.get(0).data;
+	}
+	/*
+	public static int getData(List<? super Q2> q){
+		return q.get(0).data;
+	}*/
+	
+	public static void main(String[] args) {
+		Ex2 e = new Ex2();
+		List<Q2> preuve = new ArrayList<Q2>();
+		for (int i = 0; i < 10; i++) {
+			preuve.add(e.new Q2Son());
+		}
+		
+		for(Q2 p : preuve){
+			System.out.print(p.data);
+		}
+		System.out.println();
+		/*
+		 Q2 : ne peut pas marcher, 
+		 car preuve est une liste de Q2 et non de sa sous-classe Q2Son. 
+		 Or, il n'y a aucune relation reconnue entre les deux.
+		*/
+		//preuve.get(0).decrement();
+		
+		
+		
+		
+	}
+
+}

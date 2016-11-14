@@ -1,0 +1,18 @@
+INDEX VERSION 1.127+/autofs/netapp/stockage/bfaltrep/M2/TAP/TAP/tp5/.metadata/.plugins/org.eclipse.jdt.core
+2992026472.index
+3632288219.index
+675836786.index
+1416114785.index
+1446085174.index
+2657583375.index
+1799457170.index
+3315680087.index
+1609666147.index
+3033028704.index
+4083227949.index
+4293612016.index
+3147079635.index
+2848571760.index
+3597002816.index
+3632697843.index
+448121210.index

@@ -1,0 +1,15 @@
+package tp5;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Ex2Flat {
+
+	
+	
+	public static void main(String[] args) {
+		List<List<Integer>> big = new ArrayList<List<Integer>>();
+
+	}
+
+}

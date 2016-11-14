@@ -1,0 +1,29 @@
+package tp5;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public final class Ex2Flat {
+	public static void printBig(List<List<Integer>> b){
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				System.out.print(b.get(i).get(j));
+			}
+		}
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		List<List<Integer>> big = new ArrayList<List<Integer>>();
+		for (int i = 0; i < 5; i++) {
+			big.add(new ArrayList<Integer>());
+			for (int j = 0; j < 5; j++) {
+				big.get(i).add(new Integer((int)Math.random()*10));
+			}
+		}
+		
+		printBig(big);
+	}
+
+}
