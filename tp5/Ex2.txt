@@ -1,5 +1,0 @@
-
-Integer        -->  Number
-
-List<Integer>       List<Number>
-List<Integer>  <--  ArrayList<Integer>

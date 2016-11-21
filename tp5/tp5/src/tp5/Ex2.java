@@ -40,15 +40,39 @@ public class Ex2 {
 		return q.get(q.size()-1).data;
 	}
 	
-	// -- better
+	// -- better presentation
 	
 	public static void getQ2(){
+		//ok
+		List<Number> list = new ArrayList<Number>();
+		List<Integer> list2 = new ArrayList<Integer>();
+		
+		//pas ok : 
+		// car meme si Number est parent de Integer, ce sont deux classes différentes.
+		//List<Number> list3 = new ArrayList<Integer>(); 
+		//List<Integer> list4 = new ArrayList<Number>();
+	}
+	
+	public static void getQ3(){
 		List<? extends Number> list = new ArrayList<Float>();
 		Number m = new Integer(1);
-		//list.add(m); // peut pas marcher
+		// ne peut pas marcher car on a utilisé extends qui ne permet pas l'écriture.
+		//list.add(m); 
 		Number n = list.get(0);
 	}
 	
+	public static void getQ4(){
+		List<? super Integer> list = new ArrayList<Number>();
+		List<? super Integer> list2 = new ArrayList<Integer>();
+		
+		Integer m = new Integer(1);
+		list.add(m);
+		Number m2 = new Integer(1);
+		// ne peut pas marcher car m2 est un Number et que nous ne pouvons donc pas certifié qu'il est un Integer.
+		//list.add(m2);
+		
+		
+	}
 	
 	public static void main(String[] args) {
 		Ex2 e = new Ex2();

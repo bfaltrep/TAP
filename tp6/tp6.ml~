@@ -1,0 +1,12 @@
+let sympa = "hello";;
+
+type weight =
+  | Gram of Float
+  | Livre of Float
+  | Carat of Float;;
+
+let convert x type_init type_wanted =
+  match type_init with
+    | Gram -> 
+    | 
+    |

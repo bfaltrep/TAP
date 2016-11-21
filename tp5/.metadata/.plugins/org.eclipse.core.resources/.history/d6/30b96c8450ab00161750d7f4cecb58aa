@@ -1,0 +1,22 @@
+package tp5;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Ex2FlatV2 {
+	/* 1.3.3 du cours : List<T> flatten List<? extends List<? extends T>>*/
+	public class Flat<T>{
+		public List<T> flatten (List<? extends List<? extends T>> list){
+			List<T> res = new ArrayList<T>();
+			
+			
+			
+			
+			
+			return res;
+		}
+	}
+	public static void main(String[] args) {
+		Flat<int> flat = new Flat<int>();
+	}
+}

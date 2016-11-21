@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="tp5/MyClass.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="tp5/Exe1.cs">
     <Files>
-      <File FileName="tp5/MyClass.cs" Line="99" Column="1" />
+      <File FileName="tp5/Exe1.cs" Line="88" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
