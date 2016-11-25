@@ -28,9 +28,15 @@ let rec sum_of_values a b = match (a,b) with
   | (Float f,Float g) -> Float (f+.g)
   | (Float f, Int i)  -> Float((float i)+.f);; (*line added*)
 
-type money =
-  | ZlotysOnePointSeven of float
-  | ZlotysThirteen of float;;
+type money = ZlotysOne | ZlotysSeven | ZlotysThirteen;;
+
+let rec glouton n =
+  if n>=13 then ZlotysThirteen::glouton(n-13)
+  else if n>=7 then ZlotysSeven::glouton(n-7)
+  else if n>=1 then ZlotysOne::glouton(n-1)
+  else [];;
+    
+let res = glouton 42;;
 
 (*** Exercice  2  ***)
 
@@ -68,6 +74,24 @@ let bi = bintree_insert t 5;;
  Une instance en caml est persistante car même si son créateur est supprimé, si une autre instance pointait sur elle (ou sa valeur), cette instance reste accessible (en tout cas, ses valeurs sont accessibles, que ce soit une copie n'est pas pertinent.
  Nous ne savons pas si l'instance est déplacable en mémoire. Mais nous présumons qu'elles sont souvent clonées (passage des arguments par valeur), ce qui peut être considéré comme un déplacement de valeur en mémoire. *)
 
+type 'a gentree =
+  | TEmpty
+  | TNode of 'a * 'a gentree list;;
+
+let rec tree_build f n rac = 
+  match n with 
+    | 0 -> TNode(rac,[])
+    | _ -> TNode(rac,List.map (tree_build f (n-1)) (f rac));;
+
+let rec tree_map f tree = match tree with 
+  | TEmpty     -> TEmpty
+  | TNode(l,r) -> TNode (f l,List.map (tree_map f) r);; 
+
+let tree = TNode(7,TNode(1,[])::TNode(4,[])::[]);;
+let res = tree_build (fun x -> [x;x+1]) 11 1;;
+tree_map inc res;;
+
+
 (*** Exercice  4  ***)
 
 type 'a queue = Q of 'a list * 'a list;;  
@@ -103,5 +127,6 @@ let queue2 = q_pop queue2;;
   let q_insert2 x f =
     match f with
       | [] 
-      | l1@l2 -> *)
+      | l1@l2 -> 
+*)
  
