@@ -176,24 +176,73 @@ let unfreeze stm = match stm with
  
 unfreeze mult;;
 
-(* Q5 *)
+(* Q6 *)
+
+(* utils *)
+let is_empty stm = match stm with
+  | Stm2Empty -> true
+  | Cons2(_) -> false;;
 
 let fonction n = match n with
   | 0 -> 1
   | 1 -> 1
   | n -> n+(n-1);;
 
-let fun_to_stream_unbound f = ;;
-
-let rec stm_map stm f =
-  match stm with
-    | Stm2Empty -> (failwith "stm_map exception : stm empty.")
-    | Cons2(x) -> Cons2(lazy (f (fst (Lazy.force x)), (stm_map (snd (Lazy.force x)) f)));;
-
 
 let stream_to_list stm =
   let rec stl_inside stm list = 
       match stm with
   | Stm2Empty -> list
-  | Cons2(x) -> (stl_inside (snd(Lazy.force(x))) (list::(fst(Lazy.force x))))
+  | Cons2(x) -> (stl_inside (snd(Lazy.force x)) ((fst(Lazy.force x))::list))
   in stl_inside stm [];;
+
+
+let rec stm_map stm f =
+  match stm with
+    | Stm2Empty -> (failwith "stm_map exception : EMPTY stream.")
+    | Cons2(x) -> if is_empty (snd (Lazy.force x))
+      then
+	Cons2(lazy (f (fst (Lazy.force x)),  (snd (Lazy.force x))))
+      else
+	Cons2(lazy (f (fst (Lazy.force x)), (stm_map (snd (Lazy.force x)) f)));;
+
+(* test de list_to_stream et de map *)
+let list = stream_to_list (stm_map (list_to_stream q3) (fun x -> x+1));;
+
+(* Q7 *)
+
+(* ... utilisation de match pour caster ... on voyait pas comment faire un cast proprement *)
+let rec stm_compose stm stm2 f =
+  if not(is_empty stm) && not(is_empty stm2)
+  then
+    match stm with
+      | Cons2(x) ->
+	match stm2 with
+	  | Cons2(y) -> Cons2( lazy ( (f (fst(Lazy.force x)) (fst(Lazy.force y))), (stm_compose (snd(Lazy.force x)) (snd(Lazy.force y)) f))) 
+  else Stm2Empty;;
+
+let compose = stream_to_list ( stm_compose (list_to_stream q3) (list_to_stream (List.rev q3)) (fun x y -> x + y));;
+
+(* Q8 *)
+
+let stm_concat stm stm2 = 
+  if is_empty stm
+  then
+    stm2
+  else
+    match stm with
+      | Cons2(x) ->
+	let rec concat_inside stm stm2 =
+	  match stm with
+	    | Stm2Empty ->  (failwith "stm_concat exception : EMPTY stream.")
+	    | Cons2(x) -> if is_empty (snd(Lazy.force x)) (* si on est sur le dernier élément non vide de stm *)
+	      then if not(is_empty stm2)
+		(* stm a été parcourue, nous relançons le traitement en parcourant stm2 cette fois. *)
+		then Cons2(lazy ( (fst (Lazy.force x)), (concat_inside stm2 (snd(Lazy.force x)))))
+		(* nos deux listes ont étés parcourues. Nous sommes sur le dernier élément de la seconde liste (maintenant devenue stm) *)
+		else  Cons2(lazy ( (fst (Lazy.force x)), Stm2Empty))
+	      (* on continue le parcours de stm *)
+	      else Cons2(lazy (fst (Lazy.force x), concat_inside (snd(Lazy.force x)) stm2))
+	in Cons2(lazy (fst (Lazy.force x), (concat_inside (snd (Lazy.force x)) stm2)));;
+
+let concat = stream_to_list ( stm_concat (list_to_stream q3) (list_to_stream (List.rev q3)) );;
